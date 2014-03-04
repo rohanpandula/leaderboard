@@ -55,6 +55,7 @@ def add_wins_losses(teamhashes, scores)
   teamhashes.values
 end
 
+# Nice use of a recursive sorting algorithm!
 def sorting(teamsarrayswins)
   rec_sorting(teamsarrayswins, [])
 end
@@ -81,7 +82,13 @@ end
 
 teamhashes = build_teams(scores)
 teamsarrayswins = add_wins_losses(teamhashes, scores)
-sorted_rankings = sorting(teamsarrayswins)
+
+# We could actually simplify this by using the built-in `sort_by`
+# method on hashes and arrays. Sort by wins first (in descending order)
+# and then by losses (ascending):
+sorted_rankings = teamsarrayswins.sort_by do |team|
+  [-team[:w], team[:l]]
+end
 
 get '/' do
   erb :index
