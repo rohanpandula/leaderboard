@@ -51,8 +51,8 @@ def add_wins_losses(teamhashes, scores)
       teamhashes[game[:home_team]][:l] += 1
     end
   end
-  teamshashwins = teamhashes
-  teamsarrayswins = teamshashwins.values
+
+  teamhashes.values
 end
 
 def sorting(teamsarrayswins)
