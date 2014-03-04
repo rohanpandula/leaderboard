@@ -31,21 +31,18 @@ scores = [
 
 def build_teams(scores)
   teamhashes = {}
-  scores
-  .each do |game|
-    if !teamhashes[game[:home_team]].is_a?(Hash)
+  scores.each do |game|
+    if !teamhashes.has_key?(game[:home_team])
       teamhashes[game[:home_team]] = {name: game[:home_team], w: 0, l: 0}
     end
-    if
-      !teamhashes[game[:away_team]].is_a?(Hash)
+    if !teamhashes.has_key?(game[:away_team])
       teamhashes[game[:away_team]] = {name: game[:away_team], w: 0, l: 0}
     end
   end
   teamhashes
 end
 def add_wins_losses(teamhashes, scores)
-  scores
-  .each do |game|
+  scores.each do |game|
     if game[:home_score] > game[:away_score]
       teamhashes[game[:home_team]][:w] += 1
       teamhashes[game[:away_team]][:l] += 1
